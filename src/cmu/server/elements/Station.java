@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Station {
 	public String name;
 	public String location;
-	public ArrayList<String> bikes = new ArrayList<String>();
+	public ArrayList<Bike> bikes = new ArrayList<Bike>();
 
-	public Station(String _name, String _location, ArrayList<String> list) {
+	public Station(String _name, String _location, ArrayList<Bike> list) {
 		name=_name;
 		location=_location;
 		bikes=list;
@@ -16,8 +16,8 @@ public class Station {
 	public String print() {
 		String result = name+":";
 		result +=bikes.size()+" bikes:";
-		for (String b : bikes) {
-			result +="\n "+ b;
+		for (Bike b : bikes) {
+			result +="\n "+ b.print();
 		}
 		result += "\n";
 		return result;

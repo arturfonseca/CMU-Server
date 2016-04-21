@@ -1,7 +1,11 @@
 package cmu.server.elements;
 
-import java.util.ArrayList;
 
 public class Trajectory {
-	ArrayList<String> coords= new ArrayList<String>();
+	String points;
+	String date;
+	public Trajectory (String _date,String _points){
+		date=_date;
+		points=_points;
+	}
 }

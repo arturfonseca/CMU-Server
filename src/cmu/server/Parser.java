@@ -22,7 +22,9 @@ public class Parser {
 		} else if (op.equals("list")) {
 			return s.list();
 		} else if (op.equals("book")) {
-			return s.book(args.split(",")[0], args.split(",")[1]);
+			return s.book(args.split(",")[0], args.split(",")[1],args.split(",")[2]);
+		} else if (op.equals("addTrajectory")) {
+			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else
 			return "ERROR";
 	}

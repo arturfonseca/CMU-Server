@@ -9,13 +9,14 @@ public class Storage {
 
 	public Storage() {
 		// SET UP
-		ArrayList<String> bikes = new ArrayList<String>();
-		bikes.add("b1");
-		bikes.add("b2");
+		users.add(new User("a", "f"));
+		ArrayList<Bike> bikes = new ArrayList<Bike>();
+		bikes.add(new Bike("b1"));
+		bikes.add(new Bike("b2"));
 		Station s = new Station("lisboa_1", null, bikes);
 		stations.add(s);
-		bikes = new ArrayList<String>();
-		bikes.add("b3");
+		bikes = new ArrayList<Bike>();
+		bikes.add(new Bike("b3"));
 		s = new Station("lisboa_2", null, bikes);
 		stations.add(s);
 	}
@@ -37,8 +38,17 @@ public class Storage {
 		return "ERROR";
 	}
 
-	public String book(String _name, String bike) {
-		return "";
+	public String book(String _name, String bike, String station) {
+		for (Station s : stations) {
+			if (s.name.equals(station)) {
+				for (Bike b : s.bikes) {
+					if (b.name.equals(bike)) {
+						return b.book(_name);
+					}
+				}
+			}
+		}
+		return "ERROR";
 	}
 
 	public String dropoff(String bike, String station) {
@@ -56,5 +66,16 @@ public class Storage {
 
 		}
 		return result;
+	}
+
+	public String trajectory(String user, String date, String points) {
+		for (User u : users) {
+			if (u.name.equals(user)) {
+				u.addTrajectory(new Trajectory(date, points));
+				return "OK";
+			}
+		}
+		return "ERROR";
+
 	}
 }
