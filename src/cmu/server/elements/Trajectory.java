@@ -8,4 +8,8 @@ public class Trajectory {
 		date=_date;
 		points=_points;
 	}
+	public String print() {
+		// TODO Auto-generated method stub
+		return date+"@"+points+",";
+	}
 }

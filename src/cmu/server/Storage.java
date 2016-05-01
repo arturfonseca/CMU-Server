@@ -78,4 +78,17 @@ public class Storage {
 		return "ERROR";
 
 	}
+	public String showTrajectory(String user) {
+		for (User u : users) {
+			if (u.name.equals(user)) {
+				String result="";
+				for (Trajectory t:u.trajectories){
+					result+=t.print();
+				}
+				return result;
+			}
+		}
+		return "ERROR";
+
+	}
 }

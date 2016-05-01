@@ -10,6 +10,22 @@ public class Parser {
 		if (parsed.length > 1) {
 			args = parsed[1];
 		}
+		/*regist:a,f
+		 *login:a,f 
+		 *pickup 
+		 *dropoff 
+		 *list 
+		 *book 
+		 *addTrajectory:a,12-03-2016,1;1-1;2-1;3-2;3
+		 *showTrajectory:a ->12-03-2016@1;1-1;2-1;3-2;3,
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 *
+		 */
 
 		if (op.equals("regist")) {
 			return s.regist(args.split(",")[0], args.split(",")[1]);
@@ -22,11 +38,13 @@ public class Parser {
 		} else if (op.equals("list")) {
 			return s.list();
 		} else if (op.equals("book")) {
-			return s.book(args.split(",")[0], args.split(",")[1],args.split(",")[2]);
+			return s.book(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else if (op.equals("addTrajectory")) {
 			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
+		} else if (op.equals("showTrajectory")) {
+			return s.showTrajectory(args.split(",")[0]);
 		} else
-			return "ERROR";
+			return "CMD not found";
 	}
 
 }
