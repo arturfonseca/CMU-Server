@@ -1,8 +1,9 @@
 package cmu.server.elements;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Station {
+public class Station{
 	public String name;
 	public String location;
 	public ArrayList<Bike> bikes = new ArrayList<Bike>();
@@ -21,5 +22,13 @@ public class Station {
 		}
 		result += "\n";
 		return result;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+	
+	public ArrayList<Bike> getBikes(){
+		return bikes;
 	}
 }

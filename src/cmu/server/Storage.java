@@ -13,11 +13,11 @@ public class Storage {
 		ArrayList<Bike> bikes = new ArrayList<Bike>();
 		bikes.add(new Bike("b1"));
 		bikes.add(new Bike("b2"));
-		Station s = new Station("lisboa_1", null, bikes);
+		Station s = new Station("lisboa_1", "38.747151, -9.118308", bikes);
 		stations.add(s);
 		bikes = new ArrayList<Bike>();
 		bikes.add(new Bike("b3"));
-		s = new Station("lisboa_2", null, bikes);
+		s = new Station("lisboa_2", "38.737187, -9.133885", bikes);
 		stations.add(s);
 	}
 
@@ -90,5 +90,15 @@ public class Storage {
 		}
 		return "ERROR";
 
+	}
+
+	public ArrayList<String> getStations() {
+		ArrayList<String> StationCoordinates = new ArrayList<String>();
+		for(Station s: stations){
+			if(!s.getBikes().isEmpty()){
+				StationCoordinates.add(s.getLocation());
+			}
+		}
+		return StationCoordinates;
 	}
 }

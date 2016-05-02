@@ -1,6 +1,8 @@
 package cmu.server.elements;
 
-public class Bike {
+import java.io.Serializable;
+
+public class Bike{
 	public String name;
 	public Boolean isBooked = false;
 	public String bookedBy;

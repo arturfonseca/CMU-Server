@@ -1,5 +1,10 @@
 package cmu.server;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Base64;
+
 public class Parser {
 	Storage s = new Storage();
 
@@ -43,8 +48,25 @@ public class Parser {
 			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else if (op.equals("showTrajectory")) {
 			return s.showTrajectory(args.split(",")[0]);
+		}else if(op.equals("getStations")){
+			System.out.println(ObjectToString(s.getStations()));
+			return ObjectToString(s.getStations());
 		} else
 			return "CMD not found";
 	}
-
+	
+	private String ObjectToString(Object object){
+		byte[] buff = null;
+		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			oos.writeObject(object);
+			buff = bos.toByteArray();
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Base64.getEncoder().encodeToString(buff);
+	}
 }
