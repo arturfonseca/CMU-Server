@@ -37,13 +37,13 @@ public class Parser {
 		} else if (op.equals("login")) {
 			return s.login(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("pickup")) {
-			return s.pickup(args.split(",")[0]);
+			return s.pickup(args.split(",")[0],args.split(",")[1]);
 		} else if (op.equals("dropoff")) {
 			return s.dropoff(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("list")) {
 			return s.list();
 		} else if (op.equals("book")) {
-			return s.book(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
+			return s.book(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("addTrajectory")) {
 			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else if (op.equals("showTrajectory")) {

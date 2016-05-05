@@ -10,14 +10,10 @@ public class Storage {
 	public Storage() {
 		// SET UP
 		users.add(new User("a", "f"));
-		ArrayList<Bike> bikes = new ArrayList<Bike>();
-		bikes.add(new Bike("b1"));
-		bikes.add(new Bike("b2"));
-		Station s = new Station("lisboa_1", "38.747151, -9.118308", bikes);
+		Station s = new Station("lisboa_1", "38.747151, -9.118308", 3);
 		stations.add(s);
-		bikes = new ArrayList<Bike>();
-		bikes.add(new Bike("b3"));
-		s = new Station("lisboa_2", "38.737187, -9.133885", bikes);
+
+		s = new Station("lisboa_2", "38.737187, -9.133885", 3);
 		stations.add(s);
 	}
 
@@ -38,25 +34,45 @@ public class Storage {
 		return "ERROR";
 	}
 
-	public String book(String _name, String bike, String station) {
+	public String book(String _name, String station) {
 		for (Station s : stations) {
 			if (s.name.equals(station)) {
-				for (Bike b : s.bikes) {
-					if (b.name.equals(bike)) {
-						return b.book(_name);
-					}
+				if (s.available > 0) {
+					s.booked++;
+					s.available--;
+					s.reservations.add(_name);
+					return "OK";
 				}
+
 			}
 		}
 		return "ERROR";
 	}
 
-	public String dropoff(String bike, String station) {
-		return "";
+	public String dropoff(String _name, String station) {
+		for (Station s : stations) {
+			if (s.name.equals(station)) {
+				s.available++;
+				return "OK";
+			}
+
+		}
+		return "ERROR";
 	}
 
-	public String pickup(String bike) {
-		return "";
+	public String pickup(String _name, String station) {
+		for (Station s : stations) {
+			if (s.name.equals(station)) {
+				if (s.reservations.contains(_name)) {
+					s.booked--;
+					s.reservations.remove(_name);
+					return "OK";
+				}
+
+			}
+
+		}
+		return "ERROR";
 	}
 
 	public String list() {
@@ -78,12 +94,13 @@ public class Storage {
 		return "ERROR";
 
 	}
+
 	public String showTrajectory(String user) {
 		for (User u : users) {
 			if (u.name.equals(user)) {
-				String result="";
-				for (Trajectory t:u.trajectories){
-					result+=t.print();
+				String result = "";
+				for (Trajectory t : u.trajectories) {
+					result += t.print();
 				}
 				return result;
 			}
@@ -94,10 +111,11 @@ public class Storage {
 
 	public ArrayList<String> getStations() {
 		ArrayList<String> StationCoordinates = new ArrayList<String>();
-		for(Station s: stations){
-			if(!s.getBikes().isEmpty()){
+		for (Station s : stations) {
+			if (s.available > 0) {
 				StationCoordinates.add(s.getLocation());
 			}
+
 		}
 		return StationCoordinates;
 	}
