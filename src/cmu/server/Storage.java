@@ -1,6 +1,9 @@
 package cmu.server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+
 import cmu.server.elements.*;
 
 public class Storage {
@@ -10,10 +13,10 @@ public class Storage {
 	public Storage() {
 		// SET UP
 		users.add(new User("a", "f"));
-		Station s = new Station("lisboa_1", "38.747151, -9.118308", 3);
+		Station s = new Station("lisboa_1", "38.747151,-9.118308", 3);
 		stations.add(s);
 
-		s = new Station("lisboa_2", "38.737187, -9.133885", 3);
+		s = new Station("lisboa_2", "38.737187,-9.133885", 3);
 		stations.add(s);
 	}
 
@@ -140,11 +143,11 @@ public class Storage {
 
 	}
 
-	public ArrayList<String> getStations() {
-		ArrayList<String> StationCoordinates = new ArrayList<String>();
+	public HashMap<String,String> getStations() {
+		HashMap<String,String> StationCoordinates = new HashMap<String,String>();
 		for (Station s : stations) {
 			if (s.available > 0) {
-				StationCoordinates.add(s.getLocation());
+				StationCoordinates.put(s.getLocation(),s.name);
 			}
 
 		}
