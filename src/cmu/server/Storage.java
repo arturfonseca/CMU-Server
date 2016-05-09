@@ -34,6 +34,25 @@ public class Storage {
 		return "ERROR";
 	}
 
+	public String setpoints(String _name, String points) {
+		for (User u : users) {
+			if (u.name.equals(_name)) {
+				u.points = points;
+				return "OK";
+			}
+		}
+		return "ERROR";
+	}
+
+	public String getpoints(String _name) {
+		for (User u : users) {
+			if (u.name.equals(_name)) {
+				return u.points;
+			}
+		}
+		return "ERROR";
+	}
+
 	public String book(String _name, String station) {
 		for (Station s : stations) {
 			if (s.name.equals(station)) {
@@ -45,6 +64,18 @@ public class Storage {
 				}
 
 			}
+		}
+		return "ERROR";
+	}
+
+	public String booked(String _name, String station) {
+		for (Station s : stations) {
+			if (s.name.equals(station)) {
+				if (s.booked(_name))
+					return "OK";
+
+			}
+
 		}
 		return "ERROR";
 	}

@@ -48,9 +48,15 @@ public class Parser {
 			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else if (op.equals("showTrajectory")) {
 			return s.showTrajectory(args.split(",")[0]);
+		} else if (op.equals("booked")) {
+			return s.booked(args.split(",")[0],args.split(",")[1]);
 		}else if(op.equals("getStations")){
 			System.out.println(ObjectToString(s.getStations()));
 			return ObjectToString(s.getStations());
+		} else if (op.equals("setpoints")) {
+			return s.setpoints(args.split(",")[0], args.split(",")[1]);
+		} else if (op.equals("getpoints")) {
+			return s.getpoints(args.split(",")[0]);
 		} else
 			return "CMD not found";
 	}

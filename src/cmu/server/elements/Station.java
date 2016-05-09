@@ -25,6 +25,9 @@ public class Station{
 	public String getLocation() {
 		return location;
 	}
+	public boolean booked (String name){
+		return reservations.contains(name);
+	}
 	
 	
 }
