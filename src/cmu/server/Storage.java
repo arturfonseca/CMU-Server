@@ -13,11 +13,12 @@ public class Storage {
 	public Storage() {
 		// SET UP
 		users.add(new User("a", "f"));
-		Station s = new Station("lisboa_1", "38.747151,-9.118308", 3);
+		Station s = new Station("station_lisboa_1", "38.747151,-9.118308", 10);
 		stations.add(s);
 
-		s = new Station("lisboa_2", "38.737187,-9.133885", 3);
+		s = new Station("station_lisboa_2", "38.737187,-9.133885", 10);
 		stations.add(s);
+		book("a","station_lisboa_1");
 	}
 
 	public String regist(String _name, String _pw) {
