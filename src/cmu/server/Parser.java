@@ -57,6 +57,12 @@ public class Parser {
 			return s.setpoints(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("getpoints")) {
 			return s.getpoints(args.split(",")[0]);
+		} else if (op.equals("incpoints")) {
+			return s.incpoints(args.split(",")[0], args.split(",")[1]);
+		} else if (op.equals("decpoints")) {
+			return s.decpoints(args.split(",")[0], args.split(",")[1]);
+		} else if (op.equals("transferpoints")) {
+			return s.transfer(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
 		} else
 			return "CMD not found";
 	}

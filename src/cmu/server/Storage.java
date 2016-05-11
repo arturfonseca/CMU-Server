@@ -40,17 +40,42 @@ public class Storage {
 	public String setpoints(String _name, String points) {
 		for (User u : users) {
 			if (u.name.equals(_name)) {
-				u.points = points;
-				return "OK";
+				u.points = Integer.parseInt(points);
+				return u.points + "";
 			}
 		}
 		return "ERROR";
 	}
 
+	public String incpoints(String _name, String points) {
+		for (User u : users) {
+			if (u.name.equals(_name)) {
+				u.points += Integer.parseInt(points);
+				return u.points + "";
+			}
+		}
+		return "ERROR";
+	}
+
+	public String decpoints(String _name, String points) {
+		for (User u : users) {
+			if (u.name.equals(_name)) {
+				u.points -= Integer.parseInt(points);
+				return u.points + "";
+			}
+		}
+		return "ERROR";
+	}
+
+	public String transfer(String _name, String points, String receiver) {
+		incpoints(receiver, points);
+		return decpoints(_name, points);
+	}
+
 	public String getpoints(String _name) {
 		for (User u : users) {
 			if (u.name.equals(_name)) {
-				return u.points;
+				return u.points + "";
 			}
 		}
 		return "ERROR";

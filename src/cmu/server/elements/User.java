@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class User {
 	public String name;
 	public String pw;
-	public String points="0";
+	public int points=1000;
 	public ArrayList<Trajectory> trajectories=new ArrayList<Trajectory>();
 
 	public User(String _name, String _pw) {
