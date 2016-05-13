@@ -63,7 +63,15 @@ public class Storage {
 	public String decpoints(String _name, String points) {
 		for (User u : users) {
 			if (u.name.equals(_name)) {
-				u.points -= Integer.parseInt(points);
+				
+				// don't allow to give more points then user has 
+				if((u.points - Integer.parseInt(points)) < 0) {
+					 u.points -= u.points;
+				}
+				else {
+					u.points -= Integer.parseInt(points);
+				}
+
 				return u.points + "";
 			}
 		}
@@ -71,8 +79,11 @@ public class Storage {
 	}
 
 	public String transfer(String _name, String points, String receiver) {
-		incpoints(receiver, points);
-		return decpoints(_name, points);
+		// to prevent the user to send more points then has
+		// calculate new points and save result
+		String result = decpoints(_name, points);
+		incpoints(receiver, result);
+		return result;
 	}
 
 	public String getpoints(String _name) {
