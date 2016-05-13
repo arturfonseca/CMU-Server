@@ -1,8 +1,10 @@
 package cmu.server;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Set;
 
 import cmu.server.elements.*;
 
@@ -144,29 +146,37 @@ public class Storage {
 		return result;
 	}
 
-	public String trajectory(String user, String date, String points) {
+	public String trajectory(String user, String date, String coordinates, String points) {
+		System.out.println(user+";"+date+";");
+		System.out.println(coordinates);
+		System.out.println(points);
 		for (User u : users) {
 			if (u.name.equals(user)) {
-				u.addTrajectory(new Trajectory(date, points));
+				u.addTrajectory(date,coordinates,points);
 				return "OK";
 			}
 		}
 		return "ERROR";
 
 	}
-
-	public String showTrajectory(String user) {
-		for (User u : users) {
-			if (u.name.equals(user)) {
-				String result = "";
-				for (Trajectory t : u.trajectories) {
-					result += t.print();
-				}
-				return result;
+	
+	public ArrayList<String> getAllTrajectories(String user){
+		for(User u: users){
+			if(u.name.equals(user)){
+				return new ArrayList<String>(u.trajectories.keySet());
 			}
 		}
-		return "ERROR";
+		return new ArrayList<String>();
+	}
 
+	public String getTrajectory(String user, String date){
+		for(User u: users){
+			if(u.name.equals(user)){
+				System.out.println(u.trajectories.get(date));
+				return u.trajectories.get(date);
+			}
+		}
+		return "Error";
 	}
 
 	public HashMap<String,String> getStations() {
@@ -178,5 +188,19 @@ public class Storage {
 
 		}
 		return StationCoordinates;
+	}
+	
+	public String getLastTrajectory(String user){
+		for(User u: users){
+			if(u.name.equals(user)){
+				Enumeration<String> keys = u.trajectories.keys();
+				String key = keys.nextElement();
+				while(keys.hasMoreElements()){
+					key = keys.nextElement();
+				}
+				return u.trajectories.get(key);
+			}
+		}
+		return "Error";
 	}
 }

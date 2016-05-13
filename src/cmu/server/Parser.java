@@ -31,7 +31,7 @@ public class Parser {
 		 * 
 		 *
 		 */
-
+		System.out.println(cmd);
 		if (op.equals("regist")) {
 			return s.regist(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("login")) {
@@ -45,9 +45,7 @@ public class Parser {
 		} else if (op.equals("book")) {
 			return s.book(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("addTrajectory")) {
-			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
-		} else if (op.equals("showTrajectory")) {
-			return s.showTrajectory(args.split(",")[0]);
+			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2], args.split(",")[3]);
 		} else if (op.equals("booked")) {
 			return s.booked(args.split(",")[0],args.split(",")[1]);
 		}else if(op.equals("getStations")){
@@ -63,6 +61,14 @@ public class Parser {
 			return s.decpoints(args.split(",")[0], args.split(",")[1]);
 		} else if (op.equals("transferpoints")) {
 			return s.transfer(args.split(",")[0], args.split(",")[1], args.split(",")[2]);
+		}else if(op.equals("getAllTrajectories")){
+			return ObjectToString(s.getAllTrajectories(args.split(",")[0]));
+		}else if(op.equals("getTrajectory")){
+			return s.getTrajectory(args.split(",")[0], args.split(",")[1]);
+		}else if(op.equals("getLastTrajectory")){
+			return s.getLastTrajectory(args.split(",")[0]);
+		}else if(op.equals("addTrajectory")){
+			return s.trajectory(args.split(",")[0], args.split(",")[1], args.split(",")[2],args.split(",")[2]);
 		} else
 			return "CMD not found";
 	}
