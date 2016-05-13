@@ -71,7 +71,6 @@ public class Storage {
 				else {
 					u.points -= Integer.parseInt(points);
 				}
-
 				return u.points + "";
 			}
 		}
@@ -81,8 +80,12 @@ public class Storage {
 	public String transfer(String _name, String points, String receiver) {
 		// to prevent the user to send more points then has
 		// calculate new points and save result
+		String actual = getpoints(_name);
 		String result = decpoints(_name, points);
-		incpoints(receiver, result);
+		if(result.equals("0"))
+			incpoints(receiver, actual);
+		else
+			incpoints(receiver, points);
 		return result;
 	}
 
